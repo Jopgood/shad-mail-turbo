@@ -2,8 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { headers } from "next/headers";
-
-import { initAuth } from "@acme/auth";
+import { initAuth } from "@shad-mail/auth";
 
 import { env } from "~/env";
 
@@ -20,6 +19,8 @@ export const auth = initAuth({
   secret: env.AUTH_SECRET,
   discordClientId: env.AUTH_DISCORD_ID,
   discordClientSecret: env.AUTH_DISCORD_SECRET,
+  googleClientId: env.GOOGLE_CLIENT_ID,
+  googleClientSecret: env.GOOGLE_CLIENT_SECRET,
 });
 
 export const getSession = cache(async () =>

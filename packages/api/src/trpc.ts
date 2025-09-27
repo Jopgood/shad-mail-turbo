@@ -6,12 +6,11 @@
  * tl;dr - this is where all the tRPC server stuff is created and plugged in.
  * The pieces you will need to use are documented accordingly near the end
  */
+import type { Auth } from "@shad-mail/auth";
+import { db } from "@shad-mail/db/client";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { z, ZodError } from "zod/v4";
-
-import type { Auth } from "@acme/auth";
-import { db } from "@acme/db/client";
 
 /**
  * 1. CONTEXT
@@ -34,6 +33,7 @@ export const createTRPCContext = async (opts: {
   const session = await authApi.getSession({
     headers: opts.headers,
   });
+
   return {
     authApi,
     session,

@@ -1,5 +1,5 @@
 {
-  "name": "@acme/nextjs",
+  "name": "@shad-mail/nextjs",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,16 +13,19 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@acme/api": "workspace:*",
-    "@acme/auth": "workspace:*",
-    "@acme/db": "workspace:*",
-    "@acme/ui": "workspace:*",
-    "@acme/validators": "workspace:*",
+    "@shad-mail/api": "workspace:*",
+    "@shad-mail/auth": "workspace:*",
+    "@shad-mail/db": "workspace:*",
+    "@shad-mail/mail": "workspace:*",
+    "@shad-mail/ui": "workspace:*",
+    "@shad-mail/validators": "workspace:*",
     "@t3-oss/env-nextjs": "^0.13.8",
+    "@tabler/icons-react": "^3.35.0",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
     "@trpc/tanstack-react-query": "catalog:",
+    "date-fns": "^4.1.0",
     "next": "^15.5.2",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
@@ -30,10 +33,10 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tailwind-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@shad-mail/eslint-config": "workspace:*",
+    "@shad-mail/prettier-config": "workspace:*",
+    "@shad-mail/tailwind-config": "workspace:*",
+    "@shad-mail/tsconfig": "workspace:*",
     "@types/node": "^22.18.1",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
@@ -44,5 +47,5 @@
     "tailwindcss": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@shad-mail/prettier-config"
 }

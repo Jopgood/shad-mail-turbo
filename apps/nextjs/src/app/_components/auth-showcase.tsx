@@ -1,36 +1,18 @@
 import { headers } from "next/headers";
+import Link from "next/link";
 import { redirect } from "next/navigation";
-
-import { Button } from "@acme/ui/button";
+import { cn } from "@shad-mail/ui";
+import { Button } from "@shad-mail/ui/button";
+import { IconChevronRight } from "@tabler/icons-react";
 
 import { auth, getSession } from "~/auth/server";
+import SignIn from "./sign-in";
 
 export async function AuthShowcase() {
   const session = await getSession();
 
   if (!session) {
-    return (
-      <form>
-        <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
-            const res = await auth.api.signInSocial({
-              body: {
-                provider: "discord",
-                callbackURL: "/",
-              },
-            });
-            if (!res.url) {
-              throw new Error("No URL returned from signInSocial");
-            }
-            redirect(res.url);
-          }}
-        >
-          Sign in with Discord
-        </Button>
-      </form>
-    );
+    return <SignIn />;
   }
 
   return (
@@ -39,20 +21,33 @@ export async function AuthShowcase() {
         <span>Logged in as {session.user.name}</span>
       </p>
 
-      <form>
-        <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
-            await auth.api.signOut({
-              headers: await headers(),
-            });
-            redirect("/");
-          }}
-        >
-          Sign out
-        </Button>
-      </form>
+      <div className="flex flex-col gap-2">
+        <form>
+          <Button
+            variant="outline"
+            className={cn("w-full gap-2")}
+            formAction={async () => {
+              "use server";
+              await auth.api.signOut({
+                headers: await headers(),
+              });
+              redirect("/");
+            }}
+          >
+            Sign out
+          </Button>
+        </form>
+
+        <Link href="/mail">
+          <Button
+            variant="outline"
+            className={cn("group w-full justify-between")}
+          >
+            <span>Take me to my mail</span>
+            <IconChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-4" />
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

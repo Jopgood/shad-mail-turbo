@@ -1,5 +1,5 @@
 {
-  "name": "@acme/tailwind-config",
+  "name": "@shad-mail/tailwind-config",
   "private": true,
   "type": "module",
   "exports": {
@@ -19,13 +19,13 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@shad-mail/eslint-config": "workspace:*",
+    "@shad-mail/prettier-config": "workspace:*",
+    "@shad-mail/tsconfig": "workspace:*",
     "@types/node": "^22.18.1",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@shad-mail/prettier-config"
 }

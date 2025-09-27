@@ -1,5 +1,5 @@
 {
-  "name": "@acme/api",
+  "name": "@shad-mail/api",
   "private": true,
   "type": "module",
   "exports": {
@@ -18,20 +18,22 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@acme/auth": "workspace:*",
-    "@acme/db": "workspace:*",
-    "@acme/validators": "workspace:*",
+    "@shad-mail/auth": "workspace:*",
+    "@shad-mail/db": "workspace:*",
+    "@shad-mail/mail": "workspace:*",
+    "@shad-mail/validators": "workspace:*",
     "@trpc/server": "catalog:",
-    "superjson": "2.2.2",
-    "zod": "catalog:"
+    "google-auth-library": "^10.3.0",
+    "googleapis": "^160.0.0",
+    "superjson": "2.2.2"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@shad-mail/eslint-config": "workspace:*",
+    "@shad-mail/prettier-config": "workspace:*",
+    "@shad-mail/tsconfig": "workspace:*",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@shad-mail/prettier-config"
 }
