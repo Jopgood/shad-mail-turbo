@@ -15,7 +15,7 @@ import LabelsList from "./labels-list";
 export interface NavProps {
   isSidebarCollapsed: boolean;
   isCollapseable?: boolean;
-  onExpandSidebar?: (onComplete?: () => void) => void; // Updated to support callback
+  onExpandSidebar?: (onComplete?: () => void) => void;
   links: {
     title: string;
     label?: string;
