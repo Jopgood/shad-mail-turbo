@@ -15,7 +15,7 @@ import LabelsList from "./labels-list";
 export interface NavProps {
   isSidebarCollapsed: boolean;
   isCollapseable?: boolean;
-  onExpandSidebar?: (onComplete?: () => void) => void; // Updated to support callback
+  onExpandSidebar?: (onComplete?: () => void) => void;
   links: {
     title: string;
     label?: string;
@@ -73,16 +73,14 @@ export default function Nav({
                 <span className="sr-only">More labels</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right">
-              More labels
-            </TooltipContent>
+            <TooltipContent side="right">More labels</TooltipContent>
           </Tooltip>
         ) : (
           <CollapsibleTrigger asChild>
             <Button
               size="sm"
               variant="ghost"
-              className="justify-start dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white"
+              className="justify-start dark:text-white dark:hover:bg-muted dark:hover:text-white"
               onClick={handleCollapsedClick}
             >
               <IconDots className="mr-2 h-4 w-4" />

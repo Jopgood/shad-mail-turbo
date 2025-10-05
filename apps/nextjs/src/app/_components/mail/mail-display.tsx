@@ -34,7 +34,7 @@ export function MailDisplay() {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center p-2">
+      <div className="flex items-center gap-2 p-2">
         <div className="flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
@@ -197,11 +197,6 @@ export function MailDisplay() {
                   Loading email content...
                 </div>
               </div>
-            ) : emailBody?.body.html ? (
-              <div
-                dangerouslySetInnerHTML={{ __html: emailBody.body.html }}
-                className="prose prose-sm dark:prose-invert max-w-none"
-              />
             ) : emailBody?.body.text ? (
               <div className="whitespace-pre-wrap">{emailBody.body.text}</div>
             ) : (
@@ -230,7 +225,7 @@ export function MailDisplay() {
           </div>
         </div>
       ) : (
-        <div className="p-8 text-center text-muted-foreground">
+        <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center text-muted-foreground">
           No mail selected
         </div>
       )}
