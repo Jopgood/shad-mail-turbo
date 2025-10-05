@@ -34,7 +34,7 @@ export function MailDisplay() {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center p-2">
+      <div className="flex items-center gap-2 p-2">
         <div className="flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
@@ -225,7 +225,7 @@ export function MailDisplay() {
           </div>
         </div>
       ) : (
-        <div className="p-8 text-center text-muted-foreground">
+        <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center text-muted-foreground">
           No mail selected
         </div>
       )}

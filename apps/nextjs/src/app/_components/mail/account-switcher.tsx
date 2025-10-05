@@ -29,12 +29,21 @@ export function AccountSwitcher({ isCollapsed }: AccountSwitcherProps) {
   const { data: accounts, isLoading, error } = useUserAccounts();
   const [selectedAccount, setSelectedAccount] = React.useState<string>("");
 
-  // Set initial selected account when data loads
+  // Set initial selected account when data loads or validate current selection
   React.useEffect(() => {
-    if (accounts && accounts.length > 0 && !selectedAccount) {
+    if (!accounts || accounts.length === 0) {
+      setSelectedAccount("");
+      return;
+    }
+
+    // Set initial selection or reset if current selection is invalid
+    if (
+      !selectedAccount ||
+      !accounts.find((a: Account) => a.id === selectedAccount)
+    ) {
       setSelectedAccount(accounts[0]!.id);
     }
-  }, [accounts]);
+  }, [accounts, selectedAccount]);
 
   if (isLoading) {
     return (

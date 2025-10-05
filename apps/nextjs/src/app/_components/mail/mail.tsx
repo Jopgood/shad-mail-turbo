@@ -107,13 +107,15 @@ export default function Mail({
         <ResizablePanel
           defaultSize={defaultLayout[1]}
           minSize={30}
-          className="h-full min-w-0"
+          className="h-full min-w-0 [&>div]:gap-0"
         >
           <Tabs defaultValue="all" className="flex h-full flex-col">
             <div className="flex items-center px-4 py-2">
               <h1 className="text-xl font-bold">Inbox</h1>
               <TabsList className="ml-auto">
-                <TabsTrigger value="all">All mail</TabsTrigger>
+                <TabsTrigger className="bg-muted/30" value="all">
+                  All mail
+                </TabsTrigger>
                 <TabsTrigger value="unread">Unread</TabsTrigger>
               </TabsList>
             </div>

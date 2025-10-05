@@ -80,7 +80,7 @@ export default function Nav({
             <Button
               size="sm"
               variant="ghost"
-              className="justify-start dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white"
+              className="justify-start dark:text-white dark:hover:bg-muted dark:hover:text-white"
               onClick={handleCollapsedClick}
             >
               <IconDots className="mr-2 h-4 w-4" />

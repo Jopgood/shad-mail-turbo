@@ -11,8 +11,6 @@ export default function MailItem({ item }: { item: Mail }) {
   const mail = useMail((state) => state.mail);
   const setMail = useMail((state) => state.setMail);
 
-  console.log(item);
-
   return (
     <button
       key={item.id}
