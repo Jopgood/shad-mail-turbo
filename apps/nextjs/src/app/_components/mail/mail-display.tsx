@@ -197,11 +197,6 @@ export function MailDisplay() {
                   Loading email content...
                 </div>
               </div>
-            ) : emailBody?.body.html ? (
-              <div
-                dangerouslySetInnerHTML={{ __html: emailBody.body.html }}
-                className="prose prose-sm dark:prose-invert max-w-none"
-              />
             ) : emailBody?.body.text ? (
               <div className="whitespace-pre-wrap">{emailBody.body.text}</div>
             ) : (

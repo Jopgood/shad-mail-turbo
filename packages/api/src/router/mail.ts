@@ -3,6 +3,8 @@ import { google } from "googleapis";
 import { z } from "zod/v4";
 
 import type { Mail } from "@shad-mail/mail/types";
+import { eq } from "@shad-mail/db";
+import { account } from "@shad-mail/db/schema";
 
 import mail from "../mail.json";
 import { GoogleService } from "../services/google";
@@ -15,6 +17,63 @@ export const mailRouter = createTRPCRouter({
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     return mail as unknown as Mail[];
+  }),
+
+  getUserAccounts: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const userAccounts = await ctx.db.query.account.findMany({
+        where: eq(account.userId, ctx.session.user.id),
+        columns: {
+          id: true,
+          providerId: true,
+          accountId: true,
+        },
+      });
+
+      // Enrich accounts with actual Gmail addresses
+      const enrichedAccounts = await Promise.all(
+        userAccounts.map(async (acc) => {
+          let email = acc.accountId;
+
+          // For Google accounts, fetch the actual Gmail address
+          if (acc.providerId === "google") {
+            try {
+              const googleClient = await GoogleService.getClientForUser(
+                ctx.session.user.id,
+              );
+
+              if (googleClient) {
+                const gmail = google.gmail({ version: "v1", auth: googleClient });
+                const emailResponse = await gmail.users.getProfile({ userId: "me" });
+
+                if (emailResponse.data.emailAddress) {
+                  email = emailResponse.data.emailAddress;
+                }
+              }
+            } catch (error) {
+              console.error(`Failed to fetch Gmail address for account ${acc.id}:`, error);
+              // Fall back to accountId if Gmail API fails
+            }
+          }
+
+          return {
+            id: acc.id,
+            providerId: acc.providerId,
+            accountId: acc.accountId,
+            email,
+            label: `${acc.providerId} (${email})`,
+          };
+        }),
+      );
+
+      return enrichedAccounts;
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Failed to fetch user accounts",
+        cause: error,
+      });
+    }
   }),
 
   getLabels: protectedProcedure.query(async ({ ctx }) => {

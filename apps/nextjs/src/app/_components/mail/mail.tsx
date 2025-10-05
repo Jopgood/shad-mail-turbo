@@ -23,18 +23,12 @@ import Nav from "./nav";
 import { useSidebarExpansion } from "./use-sidebar-expansion";
 
 interface MailProps {
-  accounts: {
-    label: string;
-    email: string;
-    icon: React.ReactNode;
-  }[];
   defaultLayout?: number[];
   defaultCollapsed?: boolean;
   navCollapsedSize: number;
 }
 
 export default function Mail({
-  accounts,
   defaultLayout = [20, 32, 48],
   defaultCollapsed = false,
   navCollapsedSize,
@@ -95,7 +89,7 @@ export default function Mail({
               isCollapsed ? "h-[52px]" : "px-2",
             )}
           >
-            <AccountSwitcher isCollapsed={isCollapsed} accounts={accounts} />
+            <AccountSwitcher isCollapsed={isCollapsed} />
           </div>
           <Separator />
           <div className="flex-1 overflow-y-auto">
@@ -119,18 +113,8 @@ export default function Mail({
             <div className="flex items-center px-4 py-2">
               <h1 className="text-xl font-bold">Inbox</h1>
               <TabsList className="ml-auto">
-                <TabsTrigger
-                  value="all"
-                  className="text-zinc-600 dark:text-zinc-200"
-                >
-                  All mail
-                </TabsTrigger>
-                <TabsTrigger
-                  value="undread"
-                  className="text-zinc-600 dark:text-zinc-200"
-                >
-                  Unread
-                </TabsTrigger>
+                <TabsTrigger value="all">All mail</TabsTrigger>
+                <TabsTrigger value="unread">Unread</TabsTrigger>
               </TabsList>
             </div>
             <Separator />

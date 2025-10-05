@@ -73,9 +73,7 @@ export default function Nav({
                 <span className="sr-only">More labels</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right">
-              More labels
-            </TooltipContent>
+            <TooltipContent side="right">More labels</TooltipContent>
           </Tooltip>
         ) : (
           <CollapsibleTrigger asChild>
